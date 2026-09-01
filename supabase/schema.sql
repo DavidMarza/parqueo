@@ -347,9 +347,27 @@ create policy parking_records_update on public.parking_records
   );
 
 -- =====================================================================
+-- STORAGE: políticas para el bucket "parking-photos"
+-- (crea el bucket manualmente en Storage antes de esto; estas políticas
+-- son idempotentes, se pueden reejecutar sin problema)
+-- =====================================================================
+drop policy if exists parking_photos_select on storage.objects;
+create policy parking_photos_select on storage.objects
+  for select using (bucket_id = 'parking-photos' and auth.uid() is not null);
+
+drop policy if exists parking_photos_insert on storage.objects;
+create policy parking_photos_insert on storage.objects
+  for insert with check (bucket_id = 'parking-photos' and auth.uid() is not null);
+
+drop policy if exists parking_photos_update on storage.objects;
+create policy parking_photos_update on storage.objects
+  for update using (bucket_id = 'parking-photos' and auth.uid() is not null);
+
+-- =====================================================================
 -- FIN DEL SCRIPT
 -- Recordatorio manual (fuera de este script):
 -- 1) Crear el primer usuario admin desde Authentication → Add user,
 --    y luego: update public.profiles set role = 'admin' where id = '<uuid-del-usuario>';
--- 2) Crear el bucket de Storage "parking-photos" manualmente.
+-- 2) Crear el bucket de Storage "parking-photos" manualmente (marcar como
+--    privado; el acceso se controla con las políticas de arriba).
 -- =====================================================================

@@ -179,3 +179,121 @@ input {
   padding: 32px;
   color: var(--color-muted);
 }
+
+/* ---- Formularios (Ingreso, etc.) ---- */
+.form-page { max-width: 760px; }
+.page-subtitle { color: var(--color-muted); margin-top: -8px; }
+
+.form-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+  font-weight: 400;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.form-card fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.form-card legend { font-weight: 700; font-size: 13px; padding: 0 6px; }
+
+.form-notice {
+  background: #eff6ff;
+  color: var(--color-primary-dark);
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 13px;
+}
+
+.checkbox-row {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px !important;
+}
+
+/* ---- Cámara ---- */
+.camera-video {
+  width: 100%;
+  max-width: 360px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  display: block;
+}
+.camera-live, .camera-preview { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.camera-preview-actions { display: flex; align-items: center; gap: 10px; }
+.camera-confirmed { color: #16a34a; font-size: 13px; font-weight: 700; }
+
+/* ---- Ticket ---- */
+.ticket-toolbar { display: flex; gap: 10px; margin-bottom: 20px; }
+
+.ticket-print-area { display: flex; justify-content: center; }
+
+.ticket {
+  width: 280px;
+  border: 1px dashed var(--color-border);
+  padding: 16px;
+  background: var(--color-surface);
+  font-family: 'Courier New', monospace;
+}
+.ticket-title { text-align: center; font-weight: 700; margin-bottom: 10px; letter-spacing: 2px; }
+.ticket-row { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; margin-bottom: 4px; }
+.ticket-qr { display: flex; justify-content: center; margin: 14px 0; }
+.ticket-footer { text-align: center; font-size: 11px; color: var(--color-muted); margin-top: 10px; }
+
+@media print {
+  .no-print { display: none !important; }
+  .app-shell, .sidebar, .app-content { all: unset; }
+  body * { visibility: hidden; }
+  .ticket-print-area, .ticket-print-area * { visibility: visible; }
+  .ticket-print-area { position: absolute; top: 0; left: 0; width: 100%; }
+}
+
+/* ---- Resumen de salida ---- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.summary-label { display: block; font-size: 11px; text-transform: uppercase; color: var(--color-muted); font-weight: 700; margin-bottom: 2px; }
+.summary-full { grid-column: 1 / -1; }
+.summary-photo { max-width: 240px; border-radius: var(--radius); margin-top: 6px; }
+
+.amount-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.amount-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.amount-hint { font-size: 12px; color: var(--color-muted); margin-bottom: 10px; }
+.amount-input { width: 120px; text-align: right; }
